@@ -109,7 +109,7 @@ const Home = () => {
 
             <div className="mt-5 px-4 group">
               <h3 className="text-xl font-bold">Anonymous</h3>
-              <p className="text-gray-500 group-hover:hidden">{account.slice(0, 17) + "......"}</p>
+              <p className="text-gray-500 group-hover:hidden">{account ? account.slice(0, 17) + "......" : "Connect Wallet"}</p>
               <p className="text-gray-500 hidden group-hover:block">{account}</p>
               <div className="mt-3 text-[15px]">Web 3 Twitter User</div>
               <div className="flex space-x-4 mt-3 text-sm text-gray-500">
