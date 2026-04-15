@@ -98,7 +98,9 @@ const Home = () => {
             <div className="relative group">
               <div className="h-40 bg-gray-800 w-full" />
               <div className="absolute bottom-0 left-4">
-                <Avatar size={32} />
+                <div className="border-4 border-black rounded-full size-40">
+                  <Avatar size={"full"} />
+                </div>
               </div>
               <div className="p-4 flex justify-end">
                 <button className="px-4 py-1.5 border border-gray-600 rounded-full font-bold hover:bg-white/10 transition-colors">
@@ -192,7 +194,7 @@ const Home = () => {
                   value={newTweet}
                   onChange={(e) => setNewTweet(e.target.value)}
                   placeholder="What is happening?!"
-                  className="w-full bg-transparent text-xl outline-none resize-none min-h-[70px] scrollbar-hide"
+                  className="w-full bg-transparent text-xl outline-none resize-none min-h-17.5 scrollbar-hide"
                 />
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-1 text-twitter-blue">
