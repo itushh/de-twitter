@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+    --color-twitter-blue: #1d9bf0;
+    --color-twitter-blue-hover: #1a8cd8;
+}
+
+@layer base {
+    body {
+        @apply bg-black text-white antialiased selection:bg-blue-500/30;
+    }
+}
+
+@layer utilities {
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
