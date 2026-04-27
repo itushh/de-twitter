@@ -41,23 +41,23 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet, onLike, isLiked, onClick }
                     </div>
 
                     <div className="mt-3 flex items-center justify-between text-gray-500 max-w-md">
-                        <div className="flex items-center space-x-2 group/icon hover:text-blue-400 transition-colors">
+                        <div onClick={(e) => e.stopPropagation()} className="flex items-center group/icon hover:text-blue-400 transition-colors">
                             <div className="p-2 rounded-full group-hover/icon:bg-blue-400/10">
                                 <MessageCircle size={18} />
                             </div>
-                            <span className="text-xs">0</span>
+                            <span className="text-xs"><Infinity size={18} /></span>
                         </div>
 
-                        <div className="flex items-center space-x-2 group/icon hover:text-green-400 transition-colors">
+                        <div onClick={(e) => e.stopPropagation()} className="flex items-center group/icon hover:text-green-400 transition-colors">
                             <div className="p-2 rounded-full group-hover/icon:bg-green-400/10">
                                 <Repeat2 size={18} />
                             </div>
-                            <span className="text-xs">0</span>
+                            <span className="text-xs"><Infinity size={18} /></span>
                         </div>
 
                         <div
-                            className={`flex items-center space-x-2 group/icon transition-colors ${isLiked ? 'text-pink-600' : 'hover:text-pink-600'}`}
-                            onClick={(e) => { e.stopPropagation(); onLike(tweet.id); }}
+                            className={`flex items-center group/icon transition-colors ${isLiked ? 'text-pink-600' : 'hover:text-pink-600'}`}
+                            onClick={(e) => { e.stopPropagation(); if(!isLiked) { onLike(tweet.id); } }}
                         >
                             <div className={`p-2 rounded-full ${isLiked ? '' : 'group-hover/icon:bg-pink-600/10'}`}>
                                 <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
@@ -65,7 +65,7 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet, onLike, isLiked, onClick }
                             <span className="text-xs">{Number(tweet.likes)}</span>
                         </div>
 
-                        <div className="flex items-center space-x-2 group/icon hover:text-blue-400 transition-colors">
+                        <div onClick={(e) => e.stopPropagation()} className="flex items-center group/icon hover:text-blue-400 transition-colors">
                             <div className="p-2 rounded-full group-hover/icon:bg-blue-400/10">
                                 <BarChart3 size={18} />
                             </div>
@@ -73,10 +73,10 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet, onLike, isLiked, onClick }
                         </div>
 
                         <div className="flex items-center space-x-1">
-                            <div className="p-2 rounded-full hover:bg-blue-400/10 hover:text-blue-400 transition-colors">
+                            <div onClick={(e) => e.stopPropagation()} className="p-2 rounded-full opacity-50 hover:bg-blue-400/10 hover:text-blue-400 transition-colors">
                                 <Bookmark size={18} />
                             </div>
-                            <div className="p-2 rounded-full hover:bg-blue-400/10 hover:text-blue-400 transition-colors">
+                            <div onClick={(e) => e.stopPropagation()} className="p-2 rounded-full opacity-50 hover:bg-blue-400/10 hover:text-blue-400 transition-colors">
                                 <Share size={18} />
                             </div>
                         </div>

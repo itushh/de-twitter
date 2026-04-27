@@ -15,7 +15,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="flex flex-col h-screen sticky top-0 px-4 py-2 border-r border-gray-800 w-20 xl:w-64">
+        <div className="hidden sm:flex flex-col h-screen sticky top-0 px-4 py-2 border-r border-gray-800 w-16 sm:w-20 xl:w-64">
             <div className="hover:bg-blue-900/20 p-3 rounded-full w-fit mb-2 cursor-pointer transition-colors duration-200">
                 <TwitterLogo className="text-white fill-white" size={30} />
             </div>

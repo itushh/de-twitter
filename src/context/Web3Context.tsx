@@ -15,7 +15,37 @@ interface Web3ContextType {
     connectWallet: () => Promise<void>;
     loading: boolean;
     error: string | null;
+    isCorrectNetwork: boolean;
 }
+
+const SEPOLIA_CHAIN_ID = '0xaa36a7'; // 11155111
+
+const ensureSepoliaNetwork = async () => {
+    try {
+        await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: SEPOLIA_CHAIN_ID }],
+        });
+    } catch (switchError: any) {
+        // 4902 = chain not added to the wallet
+        if (switchError.code === 4902) {
+            await window.ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                    {
+                        chainId: SEPOLIA_CHAIN_ID,
+                        chainName: 'Sepolia Testnet',
+                        nativeCurrency: { name: 'SepoliaETH', symbol: 'ETH', decimals: 18 },
+                        rpcUrls: ['https://sepolia.infura.io/v3/'],
+                        blockExplorerUrls: ['https://sepolia.etherscan.io'],
+                    },
+                ],
+            });
+        } else {
+            throw switchError;
+        }
+    }
+};
 
 const Web3Context = createContext<Web3ContextType | undefined>(undefined);
 
@@ -28,6 +58,15 @@ export const Web3Provider = ({ children }: { children: ReactNode }) => {
     const [contract, setContract] = useState<ethers.Contract | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [isCorrectNetwork, setIsCorrectNetwork] = useState<boolean>(false);
+
+    const checkNetwork = async () => {
+        if (!window.ethereum) return false;
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        const correct = chainId.toLowerCase() === SEPOLIA_CHAIN_ID.toLowerCase();
+        setIsCorrectNetwork(correct);
+        return correct;
+    };
 
     const connectWallet = async () => {
         if (!window.ethereum) {
@@ -37,6 +76,12 @@ export const Web3Provider = ({ children }: { children: ReactNode }) => {
 
         try {
             setLoading(true);
+            setError(null);
+
+            // Ensure we are on Sepolia before doing anything else
+            await ensureSepoliaNetwork();
+            setIsCorrectNetwork(true);
+
             const provider = new ethers.BrowserProvider(window.ethereum);
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const signer = await provider.getSigner();
@@ -45,7 +90,6 @@ export const Web3Provider = ({ children }: { children: ReactNode }) => {
 
             setAccount(accounts[0]);
             setContract(twitterContract);
-            setError(null);
         } catch (err: any) {
             setError(err.message || "Failed to connect wallet");
         } finally {
@@ -71,13 +115,24 @@ export const Web3Provider = ({ children }: { children: ReactNode }) => {
                 } else {
                     setAccount(null);
                     setContract(null);
+                    setIsCorrectNetwork(false);
                 }
+            });
+
+            window.ethereum.on('chainChanged', () => {
+                // Re-check network on chain change
+                checkNetwork().then((correct) => {
+                    if (!correct) {
+                        // Clear contract since we're on wrong network
+                        setContract(null);
+                    }
+                });
             });
         }
     }, []);
 
     return (
-        <Web3Context.Provider value={{ account, contract, connectWallet, loading, error }}>
+        <Web3Context.Provider value={{ account, contract, connectWallet, loading, error, isCorrectNetwork }}>
             {children}
         </Web3Context.Provider>
     );
