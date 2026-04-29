@@ -1,4 +1,4 @@
-<h1 align="center">dTwitter</h1>
+<h1 align="center">deTwitter</h1>
 
 <p align="center">
   decentralized social media app.
@@ -26,7 +26,7 @@
 ## Guide to Clone
 
 ```bash
-git clone https://github.com/itushh/dtwitter
+git clone https://github.com/itushh/de-twitter
 
 cd dtwitter
 
@@ -73,6 +73,8 @@ Let people judge. Let ideas stand or collapse on their own.
 
 Freedom here is real.  
 So are the consequences.
+
+Note :- Not a crazy invention, just learning web3.
 
 ---
 <br />
