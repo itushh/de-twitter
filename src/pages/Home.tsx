@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useWeb3 } from '../context/Web3Context';
 import TweetCard from '../components/TweetCard';
-import { Image, List, Smile, Calendar, MapPin, Infinity, Home as HomeIcon, User } from 'lucide-react';
+import { Image, List, Smile, Calendar, MapPin, Infinity, Home as HomeIcon, User, LogOut } from 'lucide-react';
 import Avatar from '../components/Avatar';
 
 
@@ -14,6 +14,9 @@ const Home = () => {
   const [newTweet, setNewTweet] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedTweet, setSelectedTweet] = useState<any | null>(null);
+  const { disconnect } = useWeb3();
+
+  const contractAddress = "0xE04922e9Fbaa53736436EF60C474546f249B714b";
 
   const fetchAllTweets = useCallback(async () => {
     if (!contract) return;
@@ -108,8 +111,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="p-4 flex justify-end">
-                <button className="px-4 py-1.5 border border-gray-600 rounded-full font-bold hover:bg-white/10 transition-colors text-sm sm:text-base">
-                  Edit profile
+                <button onClick={() => disconnect()} className="px-4 py-1.5 flex items-center gap-2 border border-gray-600 rounded-full font-bold hover:bg-white/10 transition-colors text-sm sm:text-base">
+                  <LogOut size={18} /> Log Out
                 </button>
               </div>
             </div>
@@ -118,7 +121,9 @@ const Home = () => {
               <h3 className="text-lg sm:text-xl font-bold">Anonymous</h3>
               <p className="text-gray-500 text-sm group-hover:hidden">{account ? account.slice(0, 14) + "..." : "Connect Wallet"}</p>
               <p className="text-gray-500 text-sm hidden group-hover:block break-all">{account}</p>
-              <div className="mt-3 text-[14px] sm:text-[15px]">Web 3 Twitter User</div>
+              <div className="mt-3 text-[14px] sm:text-[15px]">I use dTwitter. <br /> 'cause nobody deserves to delete my tweet!</div>
+              <p className="text-gray-500 mt-2 text-sm group-hover:hidden">contract : {contractAddress.slice(0, 14) + "..."}</p>
+              <p className="text-gray-500 mt-2 text-sm hidden group-hover:block break-all">contract : {contractAddress}</p>
               <div className="flex flex-wrap gap-3 mt-3 text-xs sm:text-sm text-gray-500">
                 <div className="flex items-center space-x-1">
                   <Calendar size={14} />
@@ -183,7 +188,7 @@ const Home = () => {
                 For You
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 h-1 bg-twitter-blue rounded-full" />
               </button>
-              <button className="flex-1 invisible py-4 font-bold hover:bg-white/5 transition-colors relative text-sm sm:text-base text-gray-500">
+              <button className="flex-1 py-4 font-bold hover:bg-white/5 transition-colors relative text-sm sm:text-base text-gray-500">
                 Following
               </button>
             </div>
@@ -228,6 +233,11 @@ const Home = () => {
                   onClick={() => setSelectedTweet(tweet)}
                 />
               ))}
+              {allTweets.length === 0 && (
+                <div className="p-10 text-center text-gray-500 text-sm">
+                  No tweets! Be the first to tweet here!
+                </div>
+              )}
             </div>
           </section>
 

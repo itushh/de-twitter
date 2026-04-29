@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { Web3Provider } from './context/Web3Context'
+import { Web3Provider } from './context/WalletConnectContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -11,4 +11,3 @@ createRoot(document.getElementById('root')!).render(
     </Web3Provider>
   </StrictMode>,
 )
-

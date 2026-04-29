@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+<h1 align="center">dTwitter</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  decentralized social media app.
+  <br/>
+  'cause nobody deserves to delete your tweet!
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <a href="https://de-twitter.netlify.app/">
+    <img src="https://img.shields.io/badge/Visit_Site-000?style=for-the-badge&logo=netlify&logoColor=white"/>
+  </a> <a href="https://etherscan.io/address/0xE04922e9Fbaa53736436EF60C474546f249B714b">
+    <img src="https://img.shields.io/badge/View_Contract-000?style=for-the-badge&logo=ethereum&logoColor=white"/>
+  </a>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=solidity,react,vite,tailwindcss,ts,git,netlify" />
+</p>
 
-## React Compiler
+![Preview](./preview/preview-auth.png)
+![Preview](./preview/preview-home.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<br />
 
-## Expanding the ESLint configuration
+## Guide to Clone
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+git clone https://github.com/itushh/dtwitter
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+cd dtwitter
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm run dev
 ```
+<br />
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Wallet is your identity**  
+  No emails. No passwords. If you lose your wallet, that’s on you.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Tweets etched on-chain**  
+  Not stored. Not cached. Literally written into the blockchain like a digital tattoo.
+
+- **Censorship? Never heard of it**  
+  No admin panel. No hidden delete button. Nobody is coming to “moderate” you.
+
+- **Immutable everything**  
+  Once it’s out, it’s out. No edits. No take-backs. Regret is a feature.
+
+- **Trustless interactions**  
+  No middlemen deciding what’s real. Code runs the show.
+
+- **You own your content**  
+  Not the platform. Not some corporation. You.
+
+- **Zero safety nets**  
+  Post something dumb → it lives forever. Think before you flex.
+
+<br />
+
+## Vision
+
+Build a social platform with true freedom of speech.
+
+Yes, nonsense will exist. but that’s reality.  
+People say nonsense. Hiding it doesn’t fix it.
+
+The goal isn’t to silence voices, but to let truth compete openly.  
+Let people judge. Let ideas stand or collapse on their own.
+
+Freedom here is real.  
+So are the consequences.
+
+---
+<br />
+
+<p align="center">
+  <a href="https://your-site.com">
+    <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge" />
+  </a>
+</p>
